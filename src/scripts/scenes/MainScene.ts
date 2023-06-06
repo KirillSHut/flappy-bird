@@ -2,7 +2,7 @@ import Bird from "../objects/Bird";
 import Obstacles from "../objects/Obstacles";
 import Router from "../objects/Router";
 import { IRound, TType } from "../round/types";
-
+import { GameResults } from "../types/SceneTypes";
 
 export default class MainScene extends Phaser.Scene {
 	obstaclesQuantity: number
@@ -17,8 +17,7 @@ export default class MainScene extends Phaser.Scene {
 
 	init(roundData: IRound) {
 		this.type = roundData.type;
-		this.obstaclesQuantity = 23;
-		// this.obstaclesQuantity = roundData.obstaclesQuantity;
+		this.obstaclesQuantity = roundData.obstaclesQuantity * 2;
 	}
 
 	create() {
@@ -27,10 +26,22 @@ export default class MainScene extends Phaser.Scene {
 		this.obstacles = new Obstacles(this);
 		this.obstacles.createObstacles();
 		this.router = new Router(this, this.obstacles);
-		// this.physics.add.overlap(this.bird, this.obstacles, this.onOverlap, undefined, this);
+		this.physics.add.overlap(this.bird, this.obstacles, this.onOverlap, undefined, this);
 	}
 
 	onOverlap() {
+		if (!this.type) {
+			this.onEnd(this.type, this.router.currentObstacle, this.router.totalObstacles);
+		}
+	}
+
+	onEnd(type: TType, crossedObstacle: number, totalObstacle: number) {
+		const results: GameResults = {
+			type,
+			crossedObstacle,
+			totalObstacle
+		};
+		this.scene.start('StartScene', results);
 	}
 
 	update() {

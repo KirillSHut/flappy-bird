@@ -1,5 +1,7 @@
 import Obstacle from "./Obstacle";
 
+const OBSTACLE_VELOCITY = -100;
+
 export default class Obstacles extends Phaser.Physics.Arcade.Group {
     obstaclesCreated: number
     obstaclesQuantity: number
@@ -17,7 +19,7 @@ export default class Obstacles extends Phaser.Physics.Arcade.Group {
 
     createObstacles() {
         if (this.obstaclesCreated >= this.obstaclesQuantity) {
-            this.setVelocityX(-100);
+            this.setVelocityX(OBSTACLE_VELOCITY);
             return false;
         }
 

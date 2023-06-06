@@ -3,29 +3,35 @@ export default class Router {
     obstacles
     currentObstacle: number
     loseObstacle: number
+    totalObstacles: number
 
     constructor(scene, group) {
         this.scene = scene;
         this.obstacles = group.getChildren();
         this.currentObstacle = 0;
+        this.totalObstacles = this.obstacles.length;
         this.loseObstacle = this.getRandomLose();
-        console.log(this.loseObstacle);
     }
 
 
     getRandomLose() {
         let numbers: number[] = []
-        for (let i = 0; i < this.obstacles.length - 1; i++) {
+        for (let i = 1; i < this.obstacles.length - 1; i++) {
             if (i % 2 == 0) {
                 numbers.push(i);
             }
         }
         const index = Math.floor(Math.random() * numbers.length);
-
         return this.scene.type ? -1 : numbers[index];
     }
 
     update() {
+        console.log(this.currentObstacle, this.obstacles.length);
+        if (this.currentObstacle >= this.obstacles.length) {
+            this.scene.onEnd(this.scene.type, this.currentObstacle, this.totalObstacles);
+            return false;
+        }
+
         if (this.obstacles[this.currentObstacle].y - 15 <= this.scene.bird.y && this.currentObstacle !== this.loseObstacle) {
             this.scene.bird.jump();
         }
