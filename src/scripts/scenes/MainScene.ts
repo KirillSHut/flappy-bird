@@ -1,5 +1,6 @@
 import Bird from "../objects/Bird";
 import Obstacles from "../objects/Obstacles";
+import Router from "../objects/Router";
 import { IRound, TType } from "../round/types";
 
 
@@ -8,7 +9,7 @@ export default class MainScene extends Phaser.Scene {
 	type: TType
 	bird: Bird
 	obstacles: Obstacles
-	bg
+	router: Router
 
 	constructor() {
 		super({ key: 'MainScene' })
@@ -16,7 +17,8 @@ export default class MainScene extends Phaser.Scene {
 
 	init(roundData: IRound) {
 		this.type = roundData.type;
-		this.obstaclesQuantity = roundData.obstaclesQuantity;
+		this.obstaclesQuantity = 23;
+		// this.obstaclesQuantity = roundData.obstaclesQuantity;
 	}
 
 	create() {
@@ -24,6 +26,12 @@ export default class MainScene extends Phaser.Scene {
 		this.bird = new Bird(this);
 		this.obstacles = new Obstacles(this);
 		this.obstacles.createObstacles();
+		this.router = new Router(this, this.obstacles);
 	}
 
+
+
+	update() {
+		this.router.update();
+	}
 }

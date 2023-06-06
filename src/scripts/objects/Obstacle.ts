@@ -1,14 +1,15 @@
-import { ObstacleType, TObstacle } from "../types/ObstacleTypes";
+import { ObstacleParams, ObstacleType, TObstacle } from "../types/ObstacleTypes";
 import Obstacles from "./Obstacles";
 
 const MIN_GAP = 350;
 const MAX_GAP = 600;
-const DISTANCE = 100;
+const DISTANCE = 200;
 
 export default class Obstacle extends Phaser.GameObjects.Sprite {
     type: TObstacle
+    body: Phaser.Physics.Arcade.Body
 
-    constructor(scene, params) {
+    constructor(scene, params: ObstacleParams) {
         super(scene, params.x, params.y, 'column');
         this.type = params.type;
         this.init();
@@ -16,14 +17,16 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
 
     init() {
         this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
         this.setOrigin(0);
     }
 
 
     static generate(scene, lastObstacle): Obstacle {
+
         if (lastObstacle === undefined) {
-            const params = {
-                x: 500,
+            const params: ObstacleParams = {
+                x: 800,
                 y: Obstacles.getRandomBottomPos(scene),
                 type: ObstacleType.BOTTOM
             }
@@ -31,7 +34,7 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
         }
 
         if (lastObstacle.type === ObstacleType.BOTTOM) {
-            const params = {
+            const params: ObstacleParams = {
                 x: lastObstacle.x,
                 y: Obstacles.getRandomTopPos(lastObstacle, MIN_GAP, MAX_GAP),
                 type: ObstacleType.TOP
@@ -40,7 +43,7 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
         }
 
         if (lastObstacle.type === ObstacleType.TOP) {
-            const params = {
+            const params: ObstacleParams = {
                 x: lastObstacle.x + lastObstacle.width + DISTANCE,
                 y: Obstacles.getRandomBottomPos(scene),
                 type: ObstacleType.BOTTOM

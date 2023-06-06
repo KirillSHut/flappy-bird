@@ -18,7 +18,6 @@ export default class Obstacles extends Phaser.Physics.Arcade.Group {
     createObstacles() {
         if (this.obstaclesCreated >= this.obstaclesQuantity) {
             this.setVelocityX(-100);
-            console.log(this);
             return false;
         }
 

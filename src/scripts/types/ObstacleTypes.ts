@@ -4,3 +4,9 @@ export enum ObstacleType {
 }
 
 export type TObstacle = ObstacleType;
+
+export interface ObstacleParams {
+    x: number,
+    y: number,
+    type: TObstacle
+}
