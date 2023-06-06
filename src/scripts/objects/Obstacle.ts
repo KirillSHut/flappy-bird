@@ -3,7 +3,7 @@ import Obstacles from "./Obstacles";
 
 const MIN_GAP = 350;
 const MAX_GAP = 600;
-const DISTANCE = 200;
+const DISTANCE = 300;
 
 export default class Obstacle extends Phaser.GameObjects.Sprite {
     type: TObstacle

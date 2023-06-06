@@ -1,5 +1,5 @@
 const JUMP_HEIGHT = 150;
-const BIRD_GRAVITY = 150;
+const BIRD_GRAVITY = 200;
 
 export default class Bird extends Phaser.GameObjects.Sprite {
     body: Phaser.Physics.Arcade.Body
@@ -14,13 +14,15 @@ export default class Bird extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.body.velocity.y = BIRD_GRAVITY;
-        this.setOrigin(0.1, 1);
+        this.setOrigin(0, 1);
     }
 
     jump() {
+        this.rotation = -0.6;
         this.scene.tweens.add({
             targets: this,
             y: this.y - JUMP_HEIGHT,
+            rotation: 0,
             easy: 'Linear',
             duration: 150,
         })

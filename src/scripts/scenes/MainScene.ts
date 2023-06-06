@@ -27,9 +27,11 @@ export default class MainScene extends Phaser.Scene {
 		this.obstacles = new Obstacles(this);
 		this.obstacles.createObstacles();
 		this.router = new Router(this, this.obstacles);
+		// this.physics.add.overlap(this.bird, this.obstacles, this.onOverlap, undefined, this);
 	}
 
-
+	onOverlap() {
+	}
 
 	update() {
 		this.router.update();
