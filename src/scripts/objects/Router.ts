@@ -1,11 +1,13 @@
+import { IMainScene } from "../types/SceneTypes"
+
 export default class Router {
-    scene
+    scene: IMainScene
     obstacles
     currentObstacle: number
     loseObstacle: number
     totalObstacles: number
 
-    constructor(scene, group) {
+    constructor(scene: IMainScene, group: Phaser.Physics.Arcade.Group) {
         this.scene = scene;
         this.obstacles = group.getChildren();
         this.currentObstacle = 0;
@@ -26,7 +28,6 @@ export default class Router {
     }
 
     update() {
-        console.log(this.currentObstacle, this.obstacles.length);
         if (this.currentObstacle >= this.obstacles.length) {
             this.scene.onEnd(this.scene.type, this.currentObstacle, this.totalObstacles);
             return false;

@@ -2,11 +2,12 @@ import Bird from "../objects/Bird";
 import Obstacles from "../objects/Obstacles";
 import Router from "../objects/Router";
 import { IRound, TType } from "../round/types";
-import { GameResults } from "../types/SceneTypes";
+import { GameResults, IMainScene } from "../types/SceneTypes";
 
-export default class MainScene extends Phaser.Scene {
-	obstaclesQuantity: number
+
+export default class MainScene extends Phaser.Scene implements IMainScene {
 	type: TType
+	obstaclesQuantity: number
 	bird: Bird
 	obstacles: Obstacles
 	router: Router

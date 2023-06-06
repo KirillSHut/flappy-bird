@@ -3,10 +3,14 @@ export enum ObstacleType {
     TOP = 'Top'
 }
 
-export type TObstacle = ObstacleType;
-
 export interface ObstacleParams {
     x: number,
     y: number,
-    type: TObstacle
+    type: ObstacleType
+}
+
+export interface IObstacle extends Phaser.GameObjects.Sprite {
+    type: ObstacleType
+    body: Phaser.Physics.Arcade.Body
+    init: () => void
 }

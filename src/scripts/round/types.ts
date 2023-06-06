@@ -6,6 +6,6 @@ export enum EType {
 export type TType = EType;
 
 export interface IRound {
-    type: EType,
+    type: TType,
     obstaclesQuantity: number
 }

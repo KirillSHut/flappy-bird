@@ -1,11 +1,13 @@
-const JUMP_HEIGHT = 150;
-const BIRD_GRAVITY = 200;
+import { JUMP_HEIGHT } from "../constants/constants";
+import { BIRD_GRAVITY } from "../constants/constants";
+import { IMainScene } from "../types/SceneTypes";
+
 
 export default class Bird extends Phaser.GameObjects.Sprite {
     body: Phaser.Physics.Arcade.Body
 
-    constructor(scene) {
-        super(scene, 200, scene.game.config.height / 2, 'bird');
+    constructor(scene: IMainScene) {
+        super(scene, 200, +scene.game.config.height / 2, 'bird');
         this.scene = scene;
         this.init();
     }

@@ -1,12 +1,15 @@
 import Obstacle from "./Obstacle";
+import { OBSTACLE_VELOCITY } from "../constants/constants";
+import { IMainScene } from "../types/SceneTypes";
 
-const OBSTACLE_VELOCITY = -100;
+
 
 export default class Obstacles extends Phaser.Physics.Arcade.Group {
+    scene: IMainScene
     obstaclesCreated: number
     obstaclesQuantity: number
 
-    constructor(scene) {
+    constructor(scene: IMainScene) {
         super(scene.physics.world, scene);
         this.scene = scene;
         this.obstaclesQuantity = scene.obstaclesQuantity;
@@ -32,12 +35,12 @@ export default class Obstacles extends Phaser.Physics.Arcade.Group {
         this.createObstacles();
     }
 
-    static getRandomBottomPos(scene) {
+    static getRandomBottomPos(scene: Phaser.Scene) {
         const height: number = +scene.game.config.height;
         return Phaser.Math.Between(height / 2, height - 100)
     }
 
-    static getRandomTopPos(prevObstacle, minGap, maxGap) {
+    static getRandomTopPos(prevObstacle, minGap: number, maxGap: number) {
         const gap = Phaser.Math.Between(minGap, maxGap);
         const positionY = +prevObstacle.y - gap - prevObstacle.height;
         return positionY

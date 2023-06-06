@@ -1,15 +1,16 @@
-import { ObstacleParams, ObstacleType, TObstacle } from "../types/ObstacleTypes";
+import { ObstacleParams, ObstacleType } from "../types/ObstacleTypes";
+import { IObstacle } from "../types/ObstacleTypes";
 import Obstacles from "./Obstacles";
+import { MIN_GAP } from "../constants/constants";
+import { MAX_GAP } from "../constants/constants";
+import { DISTANCE } from "../constants/constants";
+import { IMainScene } from "../types/SceneTypes";
 
-const MIN_GAP = 350;
-const MAX_GAP = 600;
-const DISTANCE = 300;
-
-export default class Obstacle extends Phaser.GameObjects.Sprite {
-    type: TObstacle
+export default class Obstacle extends Phaser.GameObjects.Sprite implements IObstacle {
+    type: ObstacleType
     body: Phaser.Physics.Arcade.Body
 
-    constructor(scene, params: ObstacleParams) {
+    constructor(scene: IMainScene, params: ObstacleParams) {
         super(scene, params.x, params.y, 'column');
         this.type = params.type;
         this.init();
@@ -22,7 +23,7 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
     }
 
 
-    static generate(scene, lastObstacle): Obstacle {
+    static generate(scene: IMainScene, lastObstacle): Obstacle {
 
         if (lastObstacle === undefined) {
             const params: ObstacleParams = {

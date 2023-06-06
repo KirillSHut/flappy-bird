@@ -3,7 +3,7 @@ import { IRound } from "../round/types";
 import { GameResults } from "../types/SceneTypes";
 
 export default class StartScene extends Phaser.Scene {
-    startBtn
+    startBtn: Phaser.GameObjects.Sprite
     results: GameResults
 
     constructor() {
@@ -15,9 +15,7 @@ export default class StartScene extends Phaser.Scene {
         this.add.sprite(0, 0, 'bg').setOrigin(0);
 
         this.createStartBtn();
-        console.log(this.results);
         if (this.results.type !== undefined) {
-            console.log('here');
             this.createResultBar();
         }
     }
