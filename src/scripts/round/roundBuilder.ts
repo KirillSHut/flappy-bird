@@ -1,4 +1,4 @@
-import { TType } from "./types";
+import TType from "../types/TType";
 
 export default class RoundBuilder {
     type: TType;

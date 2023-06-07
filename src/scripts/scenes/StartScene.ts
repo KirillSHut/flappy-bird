@@ -1,16 +1,17 @@
 import getRoundData from "../round/roundData";
-import { IRound } from "../round/types";
-import { GameResults } from "../types/SceneTypes";
+import IRound from "../interfaces/IRound";
+import IGameResults from "../interfaces/IGameResults";
+
 
 export default class StartScene extends Phaser.Scene {
     startBtn: Phaser.GameObjects.Sprite
-    results: GameResults
+    results: IGameResults
 
     constructor() {
         super({ key: 'StartScene' })
     }
 
-    create(results: GameResults) {
+    create(results: IGameResults) {
         this.results = results;
         this.add.sprite(0, 0, 'bg').setOrigin(0);
 

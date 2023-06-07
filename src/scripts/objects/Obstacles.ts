@@ -1,7 +1,6 @@
 import Obstacle from "./Obstacle";
 import { OBSTACLE_VELOCITY } from "../constants/constants";
-import { IMainScene } from "../types/SceneTypes";
-
+import IMainScene from "../interfaces/IMainScene";
 
 
 export default class Obstacles extends Phaser.Physics.Arcade.Group {

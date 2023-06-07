@@ -1,16 +1,18 @@
-import { ObstacleParams, ObstacleType } from "../types/ObstacleTypes";
-import { IObstacle } from "../types/ObstacleTypes";
 import Obstacles from "./Obstacles";
 import { MIN_GAP } from "../constants/constants";
 import { MAX_GAP } from "../constants/constants";
 import { DISTANCE } from "../constants/constants";
-import { IMainScene } from "../types/SceneTypes";
+import IObstacleParams from "../interfaces/IObstacleParams";
+import EObstacleType from "../enums/EObstacleType";
+import IObstacle from "../interfaces/IObstacle";
+import IMainScene from "../interfaces/IMainScene";
+
 
 export default class Obstacle extends Phaser.GameObjects.Sprite implements IObstacle {
-    type: ObstacleType
+    type: EObstacleType
     body: Phaser.Physics.Arcade.Body
 
-    constructor(scene: IMainScene, params: ObstacleParams) {
+    constructor(scene: IMainScene, params: IObstacleParams) {
         super(scene, params.x, params.y, 'column');
         this.type = params.type;
         this.init();
@@ -26,28 +28,28 @@ export default class Obstacle extends Phaser.GameObjects.Sprite implements IObst
     static generate(scene: IMainScene, lastObstacle): Obstacle {
 
         if (lastObstacle === undefined) {
-            const params: ObstacleParams = {
+            const params: IObstacleParams = {
                 x: 800,
                 y: Obstacles.getRandomBottomPos(scene),
-                type: ObstacleType.BOTTOM
+                type: EObstacleType.BOTTOM
             }
             return new Obstacle(scene, params);
         }
 
-        if (lastObstacle.type === ObstacleType.BOTTOM) {
-            const params: ObstacleParams = {
+        if (lastObstacle.type === EObstacleType.BOTTOM) {
+            const params: IObstacleParams = {
                 x: lastObstacle.x,
                 y: Obstacles.getRandomTopPos(lastObstacle, MIN_GAP, MAX_GAP),
-                type: ObstacleType.TOP
+                type: EObstacleType.TOP
             }
             return new Obstacle(scene, params);
         }
 
-        if (lastObstacle.type === ObstacleType.TOP) {
-            const params: ObstacleParams = {
+        if (lastObstacle.type === EObstacleType.TOP) {
+            const params: IObstacleParams = {
                 x: lastObstacle.x + lastObstacle.width + DISTANCE,
                 y: Obstacles.getRandomBottomPos(scene),
-                type: ObstacleType.BOTTOM
+                type: EObstacleType.BOTTOM
             }
             return new Obstacle(scene, params);
         }

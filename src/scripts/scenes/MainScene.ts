@@ -1,9 +1,10 @@
 import Bird from "../objects/Bird";
 import Obstacles from "../objects/Obstacles";
 import Router from "../objects/Router";
-import { IRound, TType } from "../round/types";
-import { GameResults, IMainScene } from "../types/SceneTypes";
-
+import IRound from "../interfaces/IRound";
+import TType from "../types/TType";
+import IGameResults from "../interfaces/IGameResults";
+import IMainScene from "../interfaces/IMainScene";
 
 export default class MainScene extends Phaser.Scene implements IMainScene {
 	type: TType
@@ -37,7 +38,7 @@ export default class MainScene extends Phaser.Scene implements IMainScene {
 	}
 
 	onEnd(type: TType, crossedObstacle: number, totalObstacle: number) {
-		const results: GameResults = {
+		const results: IGameResults = {
 			type,
 			crossedObstacle,
 			totalObstacle

@@ -1,6 +1,6 @@
 import { JUMP_HEIGHT } from "../constants/constants";
 import { BIRD_GRAVITY } from "../constants/constants";
-import { IMainScene } from "../types/SceneTypes";
+import IMainScene from "../interfaces/IMainScene";
 
 
 export default class Bird extends Phaser.GameObjects.Sprite {

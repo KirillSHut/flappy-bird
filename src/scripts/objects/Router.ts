@@ -1,4 +1,4 @@
-import { IMainScene } from "../types/SceneTypes"
+import IMainScene from "../interfaces/IMainScene"
 
 export default class Router {
     scene: IMainScene

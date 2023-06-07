@@ -1,4 +1,4 @@
-import { EType } from "./types"
+import EType from "../enums/EType";
 import RoundBuilder from "./roundBuilder"
 
 
