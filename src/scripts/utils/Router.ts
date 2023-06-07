@@ -29,7 +29,7 @@ export default class Router {
 
     update() {
         if (this.currentObstacle >= this.obstacles.length) {
-            this.scene.onEnd(this.scene.type, this.currentObstacle, this.totalObstacles);
+            this.scene.onEnd();
             return false;
         }
 

@@ -1,6 +1,6 @@
-import Bird from "../objects/Bird";
-import Obstacles from "../objects/Obstacles";
-import Router from "../objects/Router";
+import Bird from "../components/Bird";
+import Obstacles from "../components/Obstacles";
+import Router from "../utils/Router";
 import IRound from "../interfaces/IRound";
 import TType from "../types/TType";
 import IGameResults from "../interfaces/IGameResults";
@@ -33,15 +33,15 @@ export default class MainScene extends Phaser.Scene implements IMainScene {
 
 	onOverlap() {
 		if (!this.type) {
-			this.onEnd(this.type, this.router.currentObstacle, this.router.totalObstacles);
+			this.onEnd();
 		}
 	}
 
-	onEnd(type: TType, crossedObstacle: number, totalObstacle: number) {
+	onEnd() {
 		const results: IGameResults = {
-			type,
-			crossedObstacle,
-			totalObstacle
+			type: this.type,
+			crossedObstacle: this.router.currentObstacle,
+			totalObstacle: this.obstaclesQuantity
 		};
 		this.scene.start('StartScene', results);
 	}
