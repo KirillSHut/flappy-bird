@@ -8,6 +8,7 @@ import IRound from "./IRound"
 interface IMainScene extends Phaser.Scene {
     type: TType
     obstaclesQuantity: number
+    loseObstacle: number
     bird: Bird
     obstacles: Obstacles
     router: Router

@@ -5,27 +5,14 @@ export default class Router {
     obstacles
     currentObstacle: number
     loseObstacle: number
-    totalObstacles: number
 
     constructor(scene: IMainScene, group: Phaser.Physics.Arcade.Group) {
         this.scene = scene;
         this.obstacles = group.getChildren();
         this.currentObstacle = 0;
-        this.totalObstacles = this.obstacles.length;
-        this.loseObstacle = this.getRandomLose();
+        this.loseObstacle = this.scene.loseObstacle;
     }
 
-
-    getRandomLose() {
-        let numbers: number[] = []
-        for (let i = 1; i < this.obstacles.length - 1; i++) {
-            if (i % 2 == 0) {
-                numbers.push(i);
-            }
-        }
-        const index = Math.floor(Math.random() * numbers.length);
-        return this.scene.type ? -1 : numbers[index];
-    }
 
     update() {
         if (this.currentObstacle >= this.obstacles.length) {

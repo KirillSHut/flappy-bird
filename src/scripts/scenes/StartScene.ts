@@ -1,6 +1,7 @@
 import getRoundData from "../round/roundData";
 import IRound from "../interfaces/IRound";
 import IGameResults from "../interfaces/IGameResults";
+import MODEL from "../Model/Model";
 
 
 export default class StartScene extends Phaser.Scene {
@@ -45,7 +46,7 @@ export default class StartScene extends Phaser.Scene {
     }
 
     onStart() {
-        const roundData: IRound = getRoundData();
+        const roundData: IRound = MODEL.getData();
         this.scene.start('MainScene', roundData);
     }
 }

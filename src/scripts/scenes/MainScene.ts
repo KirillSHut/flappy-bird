@@ -9,6 +9,7 @@ import IMainScene from "../interfaces/IMainScene";
 export default class MainScene extends Phaser.Scene implements IMainScene {
 	type: TType
 	obstaclesQuantity: number
+	loseObstacle: number
 	bird: Bird
 	obstacles: Obstacles
 	router: Router
@@ -19,7 +20,8 @@ export default class MainScene extends Phaser.Scene implements IMainScene {
 
 	init(roundData: IRound) {
 		this.type = roundData.type;
-		this.obstaclesQuantity = roundData.obstaclesQuantity * 2;
+		this.obstaclesQuantity = roundData.obstaclesQuantity;
+		this.loseObstacle = roundData.loseObstacle;
 	}
 
 	create() {
