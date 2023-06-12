@@ -1,7 +1,6 @@
-import { DISTANCE, MAX_GAP, MIN_GAP } from "../constants";
 import { EObstaclePosition } from "../enums";
 import { IGameScene, IObstacle, IObstacleParams } from "../interfaces";
-import { Obstacles } from "./Obstacles";
+import { ObstacleGeneratorUtil } from "../utils";
 
 
 
@@ -25,30 +24,15 @@ export class Obstacle extends Phaser.GameObjects.Sprite implements IObstacle {
     static generate(scene: IGameScene, lastObstacle): Obstacle {
 
         if (!lastObstacle) {
-            const obstacleParams: IObstacleParams = {
-                x: 800,
-                y: Obstacles.getRandomBottomPos(scene),
-                position: EObstaclePosition.BOTTOM
-            }
-            return new Obstacle(scene, obstacleParams);
+            return ObstacleGeneratorUtil.generateFirstObstacle(scene);
         }
 
         if (lastObstacle.position === EObstaclePosition.BOTTOM) {
-            const obstacleParams: IObstacleParams = {
-                x: lastObstacle.x,
-                y: Obstacles.getRandomTopPos(lastObstacle, MIN_GAP, MAX_GAP),
-                position: EObstaclePosition.TOP
-            }
-            return new Obstacle(scene, obstacleParams);
+            return ObstacleGeneratorUtil.generateTopObstacle(scene, lastObstacle);
         }
 
         if (lastObstacle.position === EObstaclePosition.TOP) {
-            const obstacleParams: IObstacleParams = {
-                x: lastObstacle.x + lastObstacle.width + DISTANCE,
-                y: Obstacles.getRandomBottomPos(scene),
-                position: EObstaclePosition.BOTTOM
-            }
-            return new Obstacle(scene, obstacleParams);
+            return ObstacleGeneratorUtil.generateBottomObstacle(scene, lastObstacle);
         }
 
         throw new Error('Unreach value');

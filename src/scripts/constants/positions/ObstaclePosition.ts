@@ -1,0 +1,1 @@
+export const FIRST_OBSTACLE_POSITION_X = 800;

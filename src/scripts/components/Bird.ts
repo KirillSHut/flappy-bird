@@ -1,11 +1,11 @@
-import { BIRD_GRAVITY, JUMP_HEIGHT } from "../constants";
+import { BIRD_GRAVITY, DEFAULT_HEIGHT, JUMP_HEIGHT } from "../constants";
 import { IGameScene } from "../interfaces";
 
 export class Bird extends Phaser.GameObjects.Sprite {
     body: Phaser.Physics.Arcade.Body
 
     constructor(scene: IGameScene) {
-        super(scene, 200, +scene.game.config.height / 2, 'bird');
+        super(scene, 200, DEFAULT_HEIGHT / 2, 'bird');
         this.scene = scene;
         this.init();
     }

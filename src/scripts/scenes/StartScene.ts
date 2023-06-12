@@ -1,4 +1,4 @@
-import { StartBtn } from "../components";
+import { ResultBar, StartBtn } from "../components";
 import { IGameResults, IRound } from "../interfaces";
 import { GameModel } from "../models";
 
@@ -24,20 +24,10 @@ export class StartScene extends Phaser.Scene {
     }
 
     createResultBar() {
-        this.add.graphics()
-            .fillStyle(0x000000, 0.5)
-            .fillRoundedRect(+this.game.config.width / 2 - 300, +this.game.config.height / 2 - 300, 600, 600);
-
         const textTitle = this.gameResults.gameOutcome;
         const textScore = this.gameResults.gameScore;
 
-        const textStyle = {
-            font: '50px CurseCasual',
-            color: '#fff'
-        };
-
-        this.add.text(+this.game.config.width / 2, 450, textTitle, textStyle).setOrigin(0.5);
-        this.add.text(+this.game.config.width / 2, 550, textScore, textStyle).setOrigin(0.5);
+        ResultBar.generate(this, textTitle, textScore);
     }
 
     createStartBtn() {

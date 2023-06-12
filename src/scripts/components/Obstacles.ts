@@ -33,15 +33,4 @@ export class Obstacles extends Phaser.Physics.Arcade.Group {
 
         this.createObstacles();
     }
-
-    static getRandomBottomPos(scene: Phaser.Scene) {
-        const height: number = +scene.game.config.height;
-        return Phaser.Math.Between(height / 2, height - 100)
-    }
-
-    static getRandomTopPos(prevObstacle, minGap: number, maxGap: number) {
-        const gap = Phaser.Math.Between(minGap, maxGap);
-        const positionY = +prevObstacle.y - gap - prevObstacle.height;
-        return positionY
-    }
 }
