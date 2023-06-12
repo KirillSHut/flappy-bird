@@ -1,6 +1,6 @@
 import { Bird, Obstacles } from "../components"
 import { TEGameOutcome } from "../types"
-import { Route } from "../../classes"
+import { Route } from "../classes"
 import { IRound } from "./IRound"
 
 

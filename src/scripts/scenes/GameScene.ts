@@ -1,7 +1,7 @@
 import { Bird, Obstacles } from "../components";
 import { IGameResults, IGameScene, IRound } from "../interfaces";
 import { TEGameOutcome } from "../types";
-import { Route } from "../../classes";
+import { Route } from "../classes";
 import { GameScoreUtil } from "../utils";
 
 export class GameScene extends Phaser.Scene implements IGameScene {

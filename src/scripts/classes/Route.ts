@@ -1,4 +1,4 @@
-import { IGameScene } from "../scripts/interfaces"
+import { IGameScene } from "../interfaces"
 
 export class Route {
     scene: IGameScene;
