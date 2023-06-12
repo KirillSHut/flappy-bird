@@ -1,11 +1,11 @@
-import TType from "../types/TType";
+import { TEGameOutcome } from "../types";
 
-export default class RoundBuilder {
-    type: TType;
+export class RoundBuilder {
+    gameOutcome: TEGameOutcome;
     obstaclesQuantity: number;
 
-    constructor(type, obstaclesQuantity) {
-        this.type = type;
+    constructor(gameOutcome, obstaclesQuantity) {
+        this.gameOutcome = gameOutcome;
         this.obstaclesQuantity = obstaclesQuantity;
     }
 }

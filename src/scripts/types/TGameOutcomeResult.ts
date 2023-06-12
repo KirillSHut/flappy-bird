@@ -1,0 +1,1 @@
+export type TGameOutcomeResult = 'You won!' | 'You lost!';

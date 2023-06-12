@@ -1,9 +1,6 @@
-import TType from '../types/TType';
+import { TEGameOutcome, TGameOutcomeResult } from "../types";
 
-interface IGameResults {
-    type: TType,
-    crossedObstacle: number,
-    totalObstacle: number
+export interface IGameResults {
+    gameOutcome: TGameOutcomeResult,
+    gameScore: string
 }
-
-export default IGameResults 

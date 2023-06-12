@@ -1,23 +1,24 @@
-import getRoundData from "../round/roundData";
-import IRound from "../interfaces/IRound";
-import IGameResults from "../interfaces/IGameResults";
-import MODEL from "../Model/Model";
+import { StartBtn } from "../components";
+import { IGameResults, IRound } from "../interfaces";
+import { GameModel } from "../models";
 
 
-export default class StartScene extends Phaser.Scene {
-    startBtn: Phaser.GameObjects.Sprite
-    results: IGameResults
+export class StartScene extends Phaser.Scene {
+    startBtn: Phaser.GameObjects.Sprite;
+    gameResults: IGameResults;
+    gameModel: GameModel
 
     constructor() {
         super({ key: 'StartScene' })
+        this.gameModel = new GameModel();
     }
 
-    create(results: IGameResults) {
-        this.results = results;
+    create(gameResults: IGameResults) {
         this.add.sprite(0, 0, 'bg').setOrigin(0);
+        this.gameResults = gameResults;
 
         this.createStartBtn();
-        if (this.results.type !== undefined) {
+        if (this.gameResults.gameOutcome !== undefined) {
             this.createResultBar();
         }
     }
@@ -27,8 +28,8 @@ export default class StartScene extends Phaser.Scene {
             .fillStyle(0x000000, 0.5)
             .fillRoundedRect(+this.game.config.width / 2 - 300, +this.game.config.height / 2 - 300, 600, 600);
 
-        const textTitle = this.results?.type ? 'You won!' : 'You lost!';
-        const textScore = `Crossed obstacles: ${this.results?.crossedObstacle / 2}/${this.results?.totalObstacle / 2}`;
+        const textTitle = this.gameResults.gameOutcome;
+        const textScore = this.gameResults.gameScore;
 
         const textStyle = {
             font: '50px CurseCasual',
@@ -40,13 +41,12 @@ export default class StartScene extends Phaser.Scene {
     }
 
     createStartBtn() {
-        this.startBtn = this.add.sprite(30, 50, 'startBtn').setOrigin(0).setScale(2);
-        this.startBtn.setInteractive();
+        this.startBtn = StartBtn.generate(this);
         this.startBtn.on('pointerdown', this.onStart, this);
     }
 
     onStart() {
-        const roundData: IRound = MODEL.getData();
-        this.scene.start('MainScene', roundData);
+        const round: IRound = this.gameModel.getRound();
+        this.scene.start('GameScene', round);
     }
 }

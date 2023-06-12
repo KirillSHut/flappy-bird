@@ -1,9 +1,8 @@
-import TType from '../types/TType';
+import { TEGameOutcome } from "../types";
 
-interface IRound {
-    type: TType,
+
+export interface IRound {
+    gameOutcome: TEGameOutcome,
     obstaclesQuantity: number,
     loseObstacle: number
 }
-
-export default IRound

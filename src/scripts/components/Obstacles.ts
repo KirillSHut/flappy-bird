@@ -1,14 +1,14 @@
-import Obstacle from "./Obstacle";
-import { OBSTACLE_VELOCITY } from "../constants/constants";
-import IMainScene from "../interfaces/IMainScene";
+import { OBSTACLE_VELOCITY } from "../constants";
+import { IGameScene } from "../interfaces";
+import { Obstacle } from "./Obstacle";
 
 
-export default class Obstacles extends Phaser.Physics.Arcade.Group {
-    scene: IMainScene
+export class Obstacles extends Phaser.Physics.Arcade.Group {
+    scene: IGameScene
     obstaclesCreated: number
     obstaclesQuantity: number
 
-    constructor(scene: IMainScene) {
+    constructor(scene: IGameScene) {
         super(scene.physics.world, scene);
         this.scene = scene;
         this.obstaclesQuantity = scene.obstaclesQuantity;

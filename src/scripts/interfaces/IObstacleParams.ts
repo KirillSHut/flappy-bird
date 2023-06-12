@@ -1,9 +1,7 @@
-import EObstacleType from '../enums/EObstacleType';
+import { TEObstaclePosition } from "../types";
 
-interface IObstacleParams {
+export interface IObstacleParams {
     x: number,
     y: number,
-    type: EObstacleType
+    position: TEObstaclePosition
 }
-
-export default IObstacleParams

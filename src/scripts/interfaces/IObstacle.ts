@@ -1,9 +1,7 @@
-import EObstacleType from '../enums/EObstacleType';
+import { TEObstaclePosition } from "../types"
 
-interface IObstacle extends Phaser.GameObjects.Sprite {
-    type: EObstacleType
+export interface IObstacle extends Phaser.GameObjects.Sprite {
+    position: TEObstaclePosition
     body: Phaser.Physics.Arcade.Body
     init: () => void
 }
-
-export default IObstacle
