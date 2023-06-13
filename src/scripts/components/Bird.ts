@@ -1,30 +1,30 @@
-import { BIRD_GRAVITY, DEFAULT_HEIGHT, JUMP_HEIGHT } from "../constants";
-import { IGameScene } from "../interfaces";
+import { IBird, IBirdModel } from "../interfaces";
 
-export class Bird extends Phaser.GameObjects.Sprite {
+export class Bird extends Phaser.GameObjects.Sprite implements IBird {
+    birdModel: IBirdModel
     body: Phaser.Physics.Arcade.Body
 
-    constructor(scene: IGameScene) {
-        super(scene, 200, DEFAULT_HEIGHT / 2, 'bird');
-        this.scene = scene;
+    constructor(birdModel: IBirdModel) {
+        super(birdModel.scene, birdModel.positionX, birdModel.positionY, birdModel.texture);
+        this.birdModel = birdModel;
         this.init();
     }
 
     init() {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.body.velocity.y = BIRD_GRAVITY;
         this.setOrigin(0, 1);
+        this.body.velocity.y = this.birdModel.velocityY;
     }
 
     jump() {
-        this.rotation = -0.6;
+        this.rotation = this.birdModel.jumpAnimation.startRotation;
         this.scene.tweens.add({
             targets: this,
-            y: this.y - JUMP_HEIGHT,
-            rotation: 0,
-            easy: 'Linear',
-            duration: 150,
+            y: this.y - this.birdModel.jumpAnimation.jumpHeight,
+            rotation: this.birdModel.jumpAnimation.finalRotation,
+            easy: this.birdModel.jumpAnimation.type,
+            duration: this.birdModel.jumpAnimation.duration,
         })
     }
 }

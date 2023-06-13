@@ -4,7 +4,7 @@ export class Route {
     scene: IGameScene;
     crossedObstacle: number;
     loseObstacle: number;
-    obstacles
+    obstacles: any
 
     constructor(scene: IGameScene, group: Phaser.Physics.Arcade.Group) {
         this.scene = scene;

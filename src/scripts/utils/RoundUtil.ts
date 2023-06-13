@@ -2,7 +2,7 @@ import { IRound } from "../interfaces";
 import { ROUNDS_MOCK } from "../round/roundData";
 
 export class RoundUtil {
-    static getRoundProperties() {
+    static getRoundProperties(): IRound {
         const index = Math.floor(Math.random() * ROUNDS_MOCK.length);
         let gameOutcome = ROUNDS_MOCK[index].gameOutcome;
         let obstaclesQuantity = ROUNDS_MOCK[index].obstaclesQuantity * 2;
@@ -14,7 +14,7 @@ export class RoundUtil {
         return round
     }
 
-    static getLoseObstacle(gameOutcome: number, obstaclesQuantity: number) {
+    static getLoseObstacle(gameOutcome: number, obstaclesQuantity: number): number {
         if (gameOutcome) {
             return -1
         }

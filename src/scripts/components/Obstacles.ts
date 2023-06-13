@@ -1,17 +1,16 @@
-import { OBSTACLE_VELOCITY } from "../constants";
-import { IGameScene } from "../interfaces";
+import { IObstacle, IObstacles, IObstaclesModel } from "../interfaces";
 import { Obstacle } from "./Obstacle";
 
 
-export class Obstacles extends Phaser.Physics.Arcade.Group {
-    scene: IGameScene
+export class Obstacles extends Phaser.Physics.Arcade.Group implements IObstacles {
+    obstaclesModel: IObstaclesModel
     obstaclesCreated: number
     obstaclesQuantity: number
 
-    constructor(scene: IGameScene) {
-        super(scene.physics.world, scene);
-        this.scene = scene;
-        this.obstaclesQuantity = scene.obstaclesQuantity;
+    constructor(obstaclesModel: IObstaclesModel) {
+        super(obstaclesModel.scene.physics.world, obstaclesModel.scene);
+        this.obstaclesModel = obstaclesModel;
+        this.obstaclesQuantity = obstaclesModel.scene.obstaclesQuantity;
         this.init();
     }
 
@@ -21,12 +20,12 @@ export class Obstacles extends Phaser.Physics.Arcade.Group {
 
     createObstacles() {
         if (this.obstaclesCreated >= this.obstaclesQuantity) {
-            this.setVelocityX(OBSTACLE_VELOCITY);
+            this.setVelocityX(this.obstaclesModel.velocityX);
             return false;
         }
 
         let lastObstacle = this.getChildren()[this.getChildren().length - 1];
-        let newObstacle: Obstacle = Obstacle.generate(this.scene, lastObstacle);
+        let newObstacle: IObstacle = Obstacle.generate(this.obstaclesModel.scene, lastObstacle);
 
         this.add(newObstacle);
         ++this.obstaclesCreated;

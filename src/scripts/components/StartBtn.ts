@@ -1,19 +1,21 @@
-import { STARTBTN_POSITION_X, STARTBTN_POSITION_Y } from "../constants";
+import { IStartBtn, IStartBtnModel } from "../interfaces";
 
-export class StartBtn extends Phaser.GameObjects.Sprite {
-    constructor(scene: Phaser.Scene) {
-        super(scene, STARTBTN_POSITION_X, STARTBTN_POSITION_Y, 'startBtn');
-        this.scene = scene;
+export class StartBtn extends Phaser.GameObjects.Sprite implements IStartBtn {
+    startBtnModel: IStartBtnModel
+
+    constructor(startBtnModel: IStartBtnModel) {
+        super(startBtnModel.scene, startBtnModel.positionX, startBtnModel.positionY, startBtnModel.texture);
+        this.startBtnModel = startBtnModel;
         this.init();
     }
 
     init() {
-        this.setOrigin(0).setScale(2);
+        this.setOrigin(0).setScale(this.startBtnModel.scale);
         this.setInteractive();
-        this.scene.add.existing(this);
+        this.startBtnModel.scene.add.existing(this);
     }
 
-    static generate(scene: Phaser.Scene) {
-        return new StartBtn(scene);
+    static generate(startBtnModel: IStartBtnModel) {
+        return new StartBtn(startBtnModel);
     }
 }

@@ -1,42 +1,38 @@
 import { ResultBar, StartBtn } from "../components";
-import { IGameResults, IRound } from "../interfaces";
-import { GameModel } from "../models";
+import { IGameResults, IRound, IStartSceneModel } from "../interfaces";
+import { StartSceneModel } from "../models";
 
 
 export class StartScene extends Phaser.Scene {
-    startBtn: Phaser.GameObjects.Sprite;
-    gameResults: IGameResults;
-    gameModel: GameModel
+    startSceneModel: IStartSceneModel
 
     constructor() {
         super({ key: 'StartScene' })
-        this.gameModel = new GameModel();
+        this.startSceneModel = new StartSceneModel(this);
     }
 
     create(gameResults: IGameResults) {
         this.add.sprite(0, 0, 'bg').setOrigin(0);
-        this.gameResults = gameResults;
 
         this.createStartBtn();
-        if (this.gameResults.gameOutcome !== undefined) {
-            this.createResultBar();
+        if (gameResults.gameOutcome !== undefined) {
+            this.createResultBar(gameResults);
         }
     }
 
-    createResultBar() {
-        const textTitle = this.gameResults.gameOutcome;
-        const textScore = this.gameResults.gameScore;
+    createResultBar(gameResults: IGameResults) {
+        const textTitle = gameResults.gameOutcome;
+        const textScore = gameResults.gameScore;
 
-        ResultBar.generate(this, textTitle, textScore);
+        ResultBar.generate(this.startSceneModel.resultsBarModel, textTitle, textScore);
     }
 
     createStartBtn() {
-        this.startBtn = StartBtn.generate(this);
-        this.startBtn.on('pointerdown', this.onStart, this);
+        StartBtn.generate(this.startSceneModel.startBtnModel).on('pointerdown', this.onStart, this);
     }
 
     onStart() {
-        const round: IRound = this.gameModel.getRound();
+        const round: IRound = this.startSceneModel.roundModel.getRound();
         this.scene.start('GameScene', round);
     }
 }

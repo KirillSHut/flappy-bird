@@ -1,11 +1,10 @@
 import { EObstaclePosition } from "../enums";
 import { IGameScene, IObstacle, IObstacleParams } from "../interfaces";
+import { TEObstaclePosition } from "../types";
 import { ObstacleGeneratorUtil } from "../utils";
 
-
-
 export class Obstacle extends Phaser.GameObjects.Sprite implements IObstacle {
-    position: EObstaclePosition;
+    position: TEObstaclePosition;
     body: Phaser.Physics.Arcade.Body
 
     constructor(scene: IGameScene, params: IObstacleParams) {
@@ -37,5 +36,4 @@ export class Obstacle extends Phaser.GameObjects.Sprite implements IObstacle {
 
         throw new Error('Unreach value');
     }
-
 }

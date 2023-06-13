@@ -1,11 +1,11 @@
 import { Obstacle } from "../components";
 import { DISTANCE, FIRST_OBSTACLE_POSITION_X, MAX_GAP, MIN_GAP } from "../constants";
 import { EObstaclePosition } from "../enums";
-import { IGameScene, IObstacleParams } from "../interfaces";
+import { IGameScene, IObstacle, IObstacleParams } from "../interfaces";
 import { RndPositionGeneratorUtil } from "./RndPositionGeneratorUtil";
 
 export class ObstacleGeneratorUtil {
-    static generateFirstObstacle(scene: IGameScene) {
+    static generateFirstObstacle(scene: IGameScene): IObstacle {
         const obstacleParams: IObstacleParams = {
             x: FIRST_OBSTACLE_POSITION_X,
             y: RndPositionGeneratorUtil.getRandomBottomPosition(),
@@ -14,7 +14,7 @@ export class ObstacleGeneratorUtil {
         return new Obstacle(scene, obstacleParams);
     }
 
-    static generateTopObstacle(scene: IGameScene, lastObstacle) {
+    static generateTopObstacle(scene: IGameScene, lastObstacle: any): IObstacle {
         const obstacleParams: IObstacleParams = {
             x: lastObstacle.x,
             y: RndPositionGeneratorUtil.getRandomTopPosition(lastObstacle, MIN_GAP, MAX_GAP),
@@ -23,7 +23,7 @@ export class ObstacleGeneratorUtil {
         return new Obstacle(scene, obstacleParams);
     }
 
-    static generateBottomObstacle(scene: IGameScene, lastObstacle) {
+    static generateBottomObstacle(scene: IGameScene, lastObstacle: any): IObstacle {
         const obstacleParams: IObstacleParams = {
             x: lastObstacle.x + lastObstacle.width + DISTANCE,
             y: RndPositionGeneratorUtil.getRandomBottomPosition(),

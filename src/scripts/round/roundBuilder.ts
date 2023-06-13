@@ -1,6 +1,7 @@
+import { IRoundBuilder } from "../interfaces";
 import { TEGameOutcome } from "../types";
 
-export class RoundBuilder {
+export class RoundBuilder implements IRoundBuilder {
     gameOutcome: TEGameOutcome;
     obstaclesQuantity: number;
 
