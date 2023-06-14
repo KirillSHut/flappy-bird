@@ -1,50 +1,38 @@
-import getRoundData from "../round/roundData";
-import { IRound } from "../round/types";
-import { GameResults } from "../types/SceneTypes";
+import { ResultBar, StartBtn } from "../components";
+import { IGameResults, IRound, IStartSceneModel } from "../interfaces";
+import { StartSceneModel } from "../models";
 
-export default class StartScene extends Phaser.Scene {
-    startBtn: Phaser.GameObjects.Sprite
-    results: GameResults
+
+export class StartScene extends Phaser.Scene {
+    startSceneModel: IStartSceneModel
 
     constructor() {
         super({ key: 'StartScene' })
+        this.startSceneModel = new StartSceneModel(this);
     }
 
-    create(results: GameResults) {
-        this.results = results;
+    create(gameResults: IGameResults) {
         this.add.sprite(0, 0, 'bg').setOrigin(0);
 
         this.createStartBtn();
-        if (this.results.type !== undefined) {
-            this.createResultBar();
+        if (gameResults.gameOutcome !== undefined) {
+            this.createResultBar(gameResults);
         }
     }
 
-    createResultBar() {
-        this.add.graphics()
-            .fillStyle(0x000000, 0.5)
-            .fillRoundedRect(+this.game.config.width / 2 - 300, +this.game.config.height / 2 - 300, 600, 600);
+    createResultBar(gameResults: IGameResults) {
+        const textTitle = gameResults.gameOutcome;
+        const textScore = gameResults.gameScore;
 
-        const textTitle = this.results?.type ? 'You won!' : 'You lost!';
-        const textScore = `Crossed obstacles: ${this.results?.crossedObstacle / 2}/${this.results?.totalObstacle / 2}`;
-
-        const textStyle = {
-            font: '50px CurseCasual',
-            color: '#fff'
-        };
-
-        this.add.text(+this.game.config.width / 2, 450, textTitle, textStyle).setOrigin(0.5);
-        this.add.text(+this.game.config.width / 2, 550, textScore, textStyle).setOrigin(0.5);
+        ResultBar.generate(this.startSceneModel.resultsBarModel, textTitle, textScore);
     }
 
     createStartBtn() {
-        this.startBtn = this.add.sprite(30, 50, 'startBtn').setOrigin(0).setScale(2);
-        this.startBtn.setInteractive();
-        this.startBtn.on('pointerdown', this.onStart, this);
+        StartBtn.generate(this.startSceneModel.startBtnModel).on('pointerdown', this.onStart, this);
     }
 
     onStart() {
-        const roundData: IRound = getRoundData();
-        this.scene.start('MainScene', roundData);
+        const round: IRound = this.startSceneModel.roundModel.getRound();
+        this.scene.start('GameScene', round);
     }
 }
