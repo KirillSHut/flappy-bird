@@ -1,12 +1,9 @@
-import { OBSTACLE_VELOCITY } from "../constants";
-import { IGameScene } from "../interfaces";
+import { IObstaclesModel } from "../interfaces";
 
-export class ObstaclesModel {
-    scene: IGameScene;
+export class ObstaclesModel implements IObstaclesModel {
     velocityX: number;
 
-    constructor(scene: IGameScene) {
-        this.scene = scene;
-        this.velocityX = OBSTACLE_VELOCITY
+    constructor() {
+        this.velocityX = -100;
     }
 }

@@ -1,9 +1,8 @@
 import { IJumpAnimation } from "./IJumpAnimation";
 
 export interface IBirdModel {
-    scene: Phaser.Scene;
-    positionX: number;
-    positionY: number;
+    x: number;
+    y: number;
     texture: string;
     velocityY: number;
     jumpAnimation: IJumpAnimation;

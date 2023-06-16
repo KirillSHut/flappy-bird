@@ -1,11 +1,10 @@
 import { ITextStyle } from "./ITextStyle";
 
 export interface IResultsBarModel {
-    scene: Phaser.Scene;
     color: number;
     opacity: number;
-    positionX: number;
-    positionY: number;
+    x: number;
+    y: number;
     width: number;
     height: number;
     textPositionX: number;

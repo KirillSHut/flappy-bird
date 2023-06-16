@@ -9,9 +9,9 @@ export class StartSceneModel implements IStartSceneModel {
     startBtnModel: IStartBtnModel
     resultsBarModel: IResultsBarModel
 
-    constructor(scene: Phaser.Scene) {
+    constructor() {
         this.roundModel = new RoundModel();
-        this.startBtnModel = new StartBtnModel(scene);
-        this.resultsBarModel = new ResultsBarModel(scene);
+        this.startBtnModel = new StartBtnModel();
+        this.resultsBarModel = new ResultsBarModel();
     }
 }

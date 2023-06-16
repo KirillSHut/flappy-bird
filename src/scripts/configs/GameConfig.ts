@@ -1,6 +1,6 @@
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "../constants";
 import { EColors } from "../enums";
-import { GameScene, PreloadScene, StartScene } from "../scenes";
+import { GameScene, PreloadScene, StartScene } from "../view/scenes";
 
 export const gameConfig: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,

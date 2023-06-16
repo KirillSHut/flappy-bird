@@ -1,26 +1,28 @@
-import { BIRD_GRAVITY, DEFAULT_HEIGHT, JUMP_HEIGHT } from "../constants";
+import { DEFAULT_HEIGHT } from "../constants";
 import { IBirdModel, IJumpAnimation } from "../interfaces";
 
 export class BirdModel implements IBirdModel {
-    scene: Phaser.Scene;
-    positionX: number;
-    positionY: number;
+    x: number;
+    y: number;
     texture: string;
     velocityY: number;
     jumpAnimation: IJumpAnimation;
 
-    constructor(scene: Phaser.Scene) {
-        this.scene = scene;
-        this.positionX = 200;
-        this.positionY = DEFAULT_HEIGHT / 2;
+    constructor() {
+        this.x = 200;
+        this.y = this.positionY;
         this.texture = 'bird';
-        this.velocityY = BIRD_GRAVITY;
+        this.velocityY = 200;
         this.jumpAnimation = {
             startRotation: -0.6,
             finalRotation: 0,
-            jumpHeight: JUMP_HEIGHT,
+            jumpHeight: 150,
             duration: 150,
             type: 'Linear'
         }
+    }
+
+    get positionY() {
+        return DEFAULT_HEIGHT / 2
     }
 }

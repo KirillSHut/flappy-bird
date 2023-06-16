@@ -1,6 +1,6 @@
 import { ResultBar, StartBtn } from "../components";
-import { IGameResults, IRound, IStartSceneModel } from "../interfaces";
-import { StartSceneModel } from "../models";
+import { IGameResults, IRound, IStartSceneModel } from "../../interfaces";
+import { StartSceneModel } from "../../models";
 
 
 export class StartScene extends Phaser.Scene {
@@ -8,7 +8,7 @@ export class StartScene extends Phaser.Scene {
 
     constructor() {
         super({ key: 'StartScene' })
-        this.startSceneModel = new StartSceneModel(this);
+        this.startSceneModel = new StartSceneModel();
     }
 
     create(gameResults: IGameResults) {
@@ -20,15 +20,15 @@ export class StartScene extends Phaser.Scene {
         }
     }
 
-    createResultBar(gameResults: IGameResults) {
-        const textTitle = gameResults.gameOutcome;
-        const textScore = gameResults.gameScore;
+    createResultBar({ gameOutcome, gameScore }: IGameResults) {
+        const textTitle = gameOutcome;
+        const textScore = gameScore;
 
-        ResultBar.generate(this.startSceneModel.resultsBarModel, textTitle, textScore);
+        ResultBar.generate(this, this.startSceneModel.resultsBarModel, textTitle, textScore);
     }
 
     createStartBtn() {
-        StartBtn.generate(this.startSceneModel.startBtnModel).on('pointerdown', this.onStart, this);
+        StartBtn.generate(this, this.startSceneModel.startBtnModel).on('pointerdown', this.onStart, this);
     }
 
     onStart() {

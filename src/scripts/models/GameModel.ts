@@ -6,8 +6,8 @@ export class GameModel implements IGameModel {
     birdModel: IBirdModel
     obstaclesModel: IObstaclesModel
 
-    constructor(scene: IGameScene) {
-        this.birdModel = new BirdModel(scene);
-        this.obstaclesModel = new ObstaclesModel(scene);
+    constructor() {
+        this.birdModel = new BirdModel();
+        this.obstaclesModel = new ObstaclesModel();
     }
 }

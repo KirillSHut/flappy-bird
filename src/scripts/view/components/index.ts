@@ -1,5 +1,5 @@
 export * from './Bird'
 export * from './Obstacle'
 export * from './Obstacles'
-export * from './StartBtn'
 export * from './ResultBar'
+export * from './StartBtn'

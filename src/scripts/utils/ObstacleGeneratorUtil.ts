@@ -1,4 +1,4 @@
-import { Obstacle } from "../components";
+import { Obstacle } from "../view/components";
 import { DISTANCE, FIRST_OBSTACLE_POSITION_X, MAX_GAP, MIN_GAP } from "../constants";
 import { EObstaclePosition } from "../enums";
 import { IGameScene, IObstacle, IObstacleParams } from "../interfaces";

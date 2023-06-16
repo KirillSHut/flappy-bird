@@ -1,6 +1,7 @@
 import { IStartBtnModel } from "./IStartBtnModel";
 
 export interface IStartBtn extends Phaser.GameObjects.Sprite {
-    startBtnModel: IStartBtnModel
+    scene: Phaser.Scene
+    scale: number
     init: () => void
 }

@@ -1,14 +1,13 @@
-import { DEFAULT_WIDTH, RESULTBAR_HEIGHT, RESULTBAR_POSITION_X, RESULTBAR_POSITION_Y, RESULTBAR_WIDTH } from "../constants";
+import { EColors, EColorsHexadecimal } from "../enums";
 import { IResultsBarModel } from "../interfaces/IResultsBarModel";
 import { ITextStyle } from "../interfaces/ITextStyle";
-import { textStyle } from "../styles";
+import { ResultsBarPositionUtil } from "../utils/ResultsBarPositionUtil";
 
 export class ResultsBarModel implements IResultsBarModel {
-    scene: Phaser.Scene;
     color: number;
     opacity: number;
-    positionX: number;
-    positionY: number;
+    x: number;
+    y: number;
     width: number;
     height: number;
     textPositionX: number;
@@ -16,17 +15,19 @@ export class ResultsBarModel implements IResultsBarModel {
     textScorePositionY: number;
     textStyle: ITextStyle
 
-    constructor(scene: Phaser.Scene) {
-        this.scene = scene;
-        this.color = 0x000000;
-        this.opacity = 0.5
-        this.positionX = RESULTBAR_POSITION_X;
-        this.positionY = RESULTBAR_POSITION_Y;
-        this.width = RESULTBAR_WIDTH;
-        this.height = RESULTBAR_HEIGHT;
-        this.textPositionX = DEFAULT_WIDTH / 2;
+    constructor() {
+        this.color = EColorsHexadecimal.BLACK;
+        this.opacity = 0.5;
+        this.width = 600;
+        this.height = 600;
+        this.x = ResultsBarPositionUtil.getX(this.width);
+        this.y = ResultsBarPositionUtil.getY(this.height);
+        this.textPositionX = ResultsBarPositionUtil.getTextPositionX();
         this.textTitlePositionY = 450;
         this.textScorePositionY = 550;
-        this.textStyle = textStyle;
+        this.textStyle = {
+            font: '50px CurseCasual',
+            color: EColors.WHITE
+        };
     }
 }

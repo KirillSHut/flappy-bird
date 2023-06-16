@@ -7,7 +7,6 @@ export class RoundModel implements IRoundModel {
     obstaclesQuantity: number
 
     getRound(): IRound {
-        const round: IRound = RoundUtil.getRoundProperties();
-        return round
+        return RoundUtil.getRoundProperties();
     }
 }

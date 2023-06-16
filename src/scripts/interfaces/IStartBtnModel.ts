@@ -1,7 +1,6 @@
 export interface IStartBtnModel {
-    scene: Phaser.Scene;
-    positionX: number;
-    positionY: number;
+    x: number;
+    y: number;
     texture: string;
     scale: number;
 }

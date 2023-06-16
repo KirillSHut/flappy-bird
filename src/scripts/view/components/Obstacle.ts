@@ -1,15 +1,17 @@
-import { EObstaclePosition } from "../enums";
-import { IGameScene, IObstacle, IObstacleParams } from "../interfaces";
-import { TEObstaclePosition } from "../types";
-import { ObstacleGeneratorUtil } from "../utils";
+import { EObstaclePosition } from "../../enums";
+import { IGameScene, IObstacle, IObstacleParams } from "../../interfaces";
+import { TEObstaclePosition } from "../../types";
+import { ObstacleGeneratorUtil } from "../../utils";
 
 export class Obstacle extends Phaser.GameObjects.Sprite implements IObstacle {
+    scene: Phaser.Scene;
     position: TEObstaclePosition;
-    body: Phaser.Physics.Arcade.Body
+    body: Phaser.Physics.Arcade.Body;
 
-    constructor(scene: IGameScene, params: IObstacleParams) {
-        super(scene, params.x, params.y, 'column');
-        this.position = params.position;
+    constructor(scene: Phaser.Scene, { x, y, position }: IObstacleParams) {
+        super(scene, x, y, 'column');
+        this.scene = scene;
+        this.position = position;
         this.init();
     }
 
