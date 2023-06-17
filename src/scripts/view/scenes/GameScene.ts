@@ -1,7 +1,7 @@
 import { Bird, Obstacles } from "../components";
-import { IBird, IGameModel, IGameResults, IGameScene, IObstacles, IRound, IRoute } from "../../interfaces";
+import { IBird, IGameModel, IGameResults, IGameScene, IObstacles, IRound, IBirdJumpController } from "../../interfaces";
 import { TEGameOutcome } from "../../types";
-import { Route } from "../../classes";
+import { BirdJumpController } from "../../controllers";
 import { GameScoreUtil } from "../../utils";
 import { GameModel } from "../../models";
 
@@ -12,7 +12,7 @@ export class GameScene extends Phaser.Scene implements IGameScene {
 	gameModel: IGameModel;
 	bird: IBird;
 	obstacles: IObstacles;
-	route: IRoute;
+	birdJumpController: IBirdJumpController;
 
 	constructor() {
 		super({ key: 'GameScene' })
@@ -30,22 +30,22 @@ export class GameScene extends Phaser.Scene implements IGameScene {
 		this.bird = new Bird(this, this.gameModel.birdModel);
 		this.obstacles = new Obstacles(this, this.gameModel.obstaclesModel);
 		this.obstacles.createObstacles();
-		this.route = new Route(this, this.obstacles);
+		this.birdJumpController = new BirdJumpController(this, this.obstacles);
 		this.physics.add.overlap(this.bird, this.obstacles, this.onOverlap, undefined, this);
 	}
 
 	onOverlap() {
 		if (!this.gameOutcome) {
-			this.onEnd();
+			this.finishRound();
 		}
 	}
 
-	onEnd() {
-		const gameResults: IGameResults = GameScoreUtil.getGameResults(this.gameOutcome, this.route.crossedObstacle, this.obstaclesQuantity);
+	finishRound() {
+		const gameResults: IGameResults = GameScoreUtil.getGameResults(this.gameOutcome, this.birdJumpController.crossedObstacle, this.obstaclesQuantity);
 		this.scene.start('StartScene', gameResults);
 	}
 
 	update() {
-		this.route.update();
+		this.birdJumpController.update();
 	}
 }

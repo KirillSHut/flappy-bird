@@ -1,6 +1,7 @@
 import { DEFAULT_HEIGHT } from "../constants";
 
 export class RndPositionGeneratorUtil {
+
     static getRandomBottomPosition(): number {
         const height: number = DEFAULT_HEIGHT;
         return Phaser.Math.Between(height / 2, height - 100)

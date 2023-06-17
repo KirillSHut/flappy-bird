@@ -1,6 +1,6 @@
 import { IGameScene } from "./IGameScene";
 
-export interface IRoute {
+export interface IBirdJumpController {
     scene: IGameScene
     crossedObstacle: number
     loseObstacle: number

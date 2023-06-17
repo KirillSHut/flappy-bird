@@ -3,7 +3,7 @@ import { IRound } from "./IRound"
 import { GameModel } from "../models"
 import { IBird } from "./IBird"
 import { IObstacles } from "./IObstacles"
-import { IRoute } from "./IRoute"
+import { IBirdJumpController } from "./IBirdJumpController"
 
 
 export interface IGameScene extends Phaser.Scene {
@@ -13,8 +13,8 @@ export interface IGameScene extends Phaser.Scene {
     gameModel: GameModel
     bird: IBird
     obstacles: IObstacles
-    route: IRoute
+    birdJumpController: IBirdJumpController
     init: (roundData: IRound) => void
     onOverlap: () => void
-    onEnd: () => void
+    finishRound: () => void
 }

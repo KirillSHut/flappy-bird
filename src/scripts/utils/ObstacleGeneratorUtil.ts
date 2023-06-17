@@ -31,4 +31,16 @@ export class ObstacleGeneratorUtil {
         }
         return new Obstacle(scene, obstacleParams);
     }
+
+    static isFirstObstacle(obstacle): boolean {
+        return !obstacle
+    }
+
+    static isObstaclePositionBottom(obstacle): boolean {
+        return obstacle.position === EObstaclePosition.BOTTOM
+    }
+
+    static isObstaclePositionTop(obstacle): boolean {
+        return obstacle.position === EObstaclePosition.TOP
+    }
 }

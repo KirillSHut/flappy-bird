@@ -21,17 +21,25 @@ export class Obstacles extends Phaser.Physics.Arcade.Group implements IObstacles
     }
 
     createObstacles() {
-        if (this.obstaclesCreated >= this.obstaclesQuantity) {
+        if (this.areAllObstaclesCreated) {
             this.setVelocityX(this.velocityX);
             return false;
         }
 
-        let lastObstacle = this.getChildren()[this.getChildren().length - 1];
+        let lastObstacle = this.lastObstacleInGroup;
         let newObstacle: IObstacle = Obstacle.generate(this.scene, lastObstacle);
 
         this.add(newObstacle);
         ++this.obstaclesCreated;
 
         this.createObstacles();
+    }
+
+    get areAllObstaclesCreated() {
+        return this.obstaclesCreated >= this.obstaclesQuantity
+    }
+
+    get lastObstacleInGroup() {
+        return this.getChildren()[this.getChildren().length - 1]
     }
 }

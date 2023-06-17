@@ -4,14 +4,15 @@ import { ROUNDS_MOCK } from "../round/roundData";
 export class RoundUtil {
     static getRoundProperties(): IRound {
         const index = Math.floor(Math.random() * ROUNDS_MOCK.length);
+
         let gameOutcome = ROUNDS_MOCK[index].gameOutcome;
         let obstaclesQuantity = ROUNDS_MOCK[index].obstaclesQuantity * 2;
-        const round: IRound = {
+
+        return {
             gameOutcome,
             obstaclesQuantity,
             loseObstacle: RoundUtil.getLoseObstacle(gameOutcome, obstaclesQuantity)
         }
-        return round
     }
 
     static getLoseObstacle(gameOutcome: number, obstaclesQuantity: number): number {

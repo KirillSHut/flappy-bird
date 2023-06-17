@@ -1,7 +1,7 @@
 import { EColors, EColorsHexadecimal } from "../enums";
 import { IResultsBarModel } from "../interfaces/IResultsBarModel";
 import { ITextStyle } from "../interfaces/ITextStyle";
-import { ResultsBarPositionUtil } from "../utils/ResultsBarPositionUtil";
+import { ResultsBarPositionUtil } from "../utils";
 
 export class ResultsBarModel implements IResultsBarModel {
     color: number;

@@ -24,15 +24,15 @@ export class Obstacle extends Phaser.GameObjects.Sprite implements IObstacle {
 
     static generate(scene: IGameScene, lastObstacle): Obstacle {
 
-        if (!lastObstacle) {
+        if (ObstacleGeneratorUtil.isFirstObstacle(lastObstacle)) {
             return ObstacleGeneratorUtil.generateFirstObstacle(scene);
         }
 
-        if (lastObstacle.position === EObstaclePosition.BOTTOM) {
+        if (ObstacleGeneratorUtil.isObstaclePositionBottom(lastObstacle)) {
             return ObstacleGeneratorUtil.generateTopObstacle(scene, lastObstacle);
         }
 
-        if (lastObstacle.position === EObstaclePosition.TOP) {
+        if (ObstacleGeneratorUtil.isObstaclePositionTop(lastObstacle)) {
             return ObstacleGeneratorUtil.generateBottomObstacle(scene, lastObstacle);
         }
 
