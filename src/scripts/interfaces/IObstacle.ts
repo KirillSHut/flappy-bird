@@ -1,5 +1,4 @@
 import { TEObstaclePosition } from "../types"
-import { IGameScene } from "./IGameScene"
 
 export interface IObstacle extends Phaser.GameObjects.Sprite {
     scene: Phaser.Scene

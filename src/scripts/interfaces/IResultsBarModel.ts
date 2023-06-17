@@ -1,14 +1,15 @@
-import { ITextStyle } from "./ITextStyle";
+import { IResultsBarGraphicsParams } from "./IResultsBarGraphicsParams";
+import { IResultsBarTextParams } from "./IResultsBarTextParams";
+import { IResultsBarTextStyle } from "./IResultsBarTextStyle";
 
 export interface IResultsBarModel {
-    color: number;
-    opacity: number;
     x: number;
     y: number;
     width: number;
     height: number;
     textPositionX: number;
-    textTitlePositionY: number;
-    textScorePositionY: number;
-    textStyle: ITextStyle
+    textStyle: IResultsBarTextStyle;
+    graphicsParams: IResultsBarGraphicsParams;
+    textTitleParams: IResultsBarTextParams;
+    textScoreParams: IResultsBarTextParams;
 }

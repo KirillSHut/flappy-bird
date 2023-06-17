@@ -1,4 +1,3 @@
-import { EObstaclePosition } from "../../enums";
 import { IGameScene, IObstacle, IObstacleParams } from "../../interfaces";
 import { TEObstaclePosition } from "../../types";
 import { ObstacleGeneratorUtil } from "../../utils";

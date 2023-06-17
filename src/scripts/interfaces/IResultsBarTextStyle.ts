@@ -1,6 +1,6 @@
 import { TEColors } from "../types";
 
-export interface ITextStyle {
+export interface IResultsBarTextStyle {
     font: string,
     color: TEColors
 }

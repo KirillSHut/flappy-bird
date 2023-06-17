@@ -9,7 +9,15 @@ export class ResultsBarPositionUtil {
         return DEFAULT_HEIGHT / 2 - height / 2;
     }
 
-    static getTextPositionX() {
-        return DEFAULT_WIDTH / 2;
+    static getTextPositionX(resultsBarWidth: number): number {
+        return resultsBarWidth / 2;
+    }
+
+    static getTitlePositionY(resultsBarHeight: number): number {
+        return resultsBarHeight / 2 - 100
+    }
+
+    static getScorePositionY(resultsBarHeight: number): number {
+        return resultsBarHeight / 2 + 50
     }
 }

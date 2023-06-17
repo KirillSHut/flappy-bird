@@ -1,15 +1,15 @@
-import { IBirdJumpController, IGameScene } from "../interfaces"
+import { IBirdJumpController, IGameScene, IObstacle } from "../interfaces"
 import { BirdJumpControllerUtil } from "../utils";
 
 export class BirdJumpController implements IBirdJumpController {
     scene: IGameScene;
     crossedObstacle: number;
     loseObstacle: number;
-    obstacles: any
+    obstacles: IObstacle[]
 
     constructor(scene: IGameScene, obstaclesGroup: Phaser.Physics.Arcade.Group) {
         this.scene = scene;
-        this.obstacles = obstaclesGroup.getChildren();
+        this.obstacles = obstaclesGroup.getChildren() as IObstacle[];
         this.loseObstacle = this.scene.loseObstacle;
         this.crossedObstacle = 0;
     }
